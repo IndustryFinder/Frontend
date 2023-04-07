@@ -9,6 +9,16 @@
       <v-row>
         <v-spacer />
         <v-col cols="12" sm="6" md="6" lg="3" xl="3" align="center">
+          <div class="icon">
+<!--            <v-btn elevation="1" v-on:click="save" v-bind:class="saveClass">-->
+<!--              <v-icon>{{ saveIcon }}</v-icon>-->
+<!--            </v-btn>-->
+            <v-btn icon @click="save">
+              <v-icon size="64px" :color="saved ? 'black' : ''">mdi-bookmark</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
+        <v-col cols="12" sm="6" md="6" lg="3" xl="3" align="center">
           <h1>
             {{ companyName }}
           </h1>
@@ -45,6 +55,8 @@
 
 <script>
 import { mdiMapMarker, mdiStar, mdiStarHalfFull, mdiStarOutline } from '@mdi/js'
+import FormData from "form-data";
+import axios from "axios";
 export default {
   props: [
       'companyName',
@@ -59,9 +71,51 @@ export default {
       ImdiPin: mdiMapMarker,
       ImdiStar: mdiStar,
       ImdiStarHalf: mdiStarHalfFull,
-      ImdiStarOutline: mdiStarOutline
+      ImdiStarOutline: mdiStarOutline,
+      saved: false
     }
-  }
+  },
+
+  methods: {
+    async save () {
+      if (this.saved == true)
+      {
+        this.saved = false;
+        let data = new FormData();
+        data.append('id', this.id);
+
+        var config = {
+          method: 'post',
+          url: this.$store.state.host + 'c/:id',
+          headers: {
+            'Accept': 'application/json',
+          },
+          data : data
+        };
+        // var errorToaster = (msg) => {
+        //   this.$toast.open({
+        //     message: msg,
+        //     type: 'error',
+        //   });
+        // };
+        let that = this;
+        await axios(config)
+            .then(function (response) {
+              var result=response.data;
+              that.$cookies.set('token', result.token);
+              that.$cookies.set('user', result.user);
+              console.log(result);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+      }
+      else {
+        this.saved = true;
+      }
+
+    },
+  },
 }
 </script>
 
