@@ -55,8 +55,6 @@
 
 <script>
 import { mdiMapMarker, mdiStar, mdiStarHalfFull, mdiStarOutline } from '@mdi/js'
-import FormData from "form-data";
-import axios from "axios";
 export default {
   props: [
       'companyName',
@@ -77,41 +75,92 @@ export default {
   },
 
   methods: {
-    async save () {
-      if (this.saved == true)
-      {
-        this.saved = false;
+    async beforeMount() {
+      await this.issaved();
+    },
+    async issaved(){
+      try {
+        let FormData = require('form-data');
         let data = new FormData();
-        data.append('id', this.id);
-
-        var config = {
-          method: 'post',
-          url: this.$store.state.host + 'c/:id',
+        data.append('token', this.$cookies.get('token'));
+        data.append('id', this.$route.params.id);
+        var axios0 = require('axios');
+        var config0 = {
+          method: 'get',
+          url: this.$store.state.host + `user/bookmarks/IsMarked/${this.$route.params.id}`,
           headers: {
             'Accept': 'application/json',
+            'Authorization': 'Bearer '+this.$cookies.get('token'),
+            'Content-Type': 'multipart/form-data'
           },
           data : data
         };
-        // var errorToaster = (msg) => {
-        //   this.$toast.open({
-        //     message: msg,
-        //     type: 'error',
-        //   });
-        // };
-        let that = this;
-        await axios(config)
-            .then(function (response) {
-              var result=response.data;
-              that.$cookies.set('token', result.token);
-              that.$cookies.set('user', result.user);
-              console.log(result);
+        axios0(config0)
+            .then((response) => {
+              if (response.status === 200) {
+                if(response.data.saved)
+                  this.saved = false;
+                else this.saved=true;
+              }
             })
-            .catch(function (error) {
-              console.log(error);
-            });
+      } catch (error) {
+        console.error(error);
       }
-      else {
-        this.saved = true;
+    },
+    async save () {
+      if (this.saved) {
+        try {
+          let FormData = require('form-data');
+          let data = new FormData();
+          data.append('token', this.$cookies.get('token'));
+          data.append('id', this.$route.params.id);
+          var axios = require('axios');
+          var config = {
+            method: 'delete',
+            url: this.$store.state.host + `user/bookmarks/del/${this.$route.params.id}`,
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer '+this.$cookies.get('token'),
+              'Content-Type': 'multipart/form-data'
+            },
+            data : data
+          };
+          axios(config)
+              .then((response) => {
+                if (response.status === 200) {
+                  this.saved = false;
+                }
+              })
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        try {
+          let FormData = require('form-data');
+          let data = new FormData();
+          data.append('token', this.$cookies.get('token'));
+          data.append('id', this.$route.params.id);
+          if (this.$route.params.id) data.append('id', this.id);
+          let axios2 = require('axios');
+          let config2 = {
+            method: 'post',
+            url: this.$store.state.host + `user/bookmarks/add/${this.$route.params.id}`,
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer '+this.$cookies.get('token'),
+              'Content-Type': 'multipart/form-data'
+            },
+            data : data
+          };
+          axios2(config2)
+              .then((response) => {
+                if (response.status === 200) {
+                  this.saved = true;
+                }
+              })
+        } catch (error) {
+          console.error(error);
+        }
       }
 
     },

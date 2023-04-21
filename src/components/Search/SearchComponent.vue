@@ -147,7 +147,7 @@ export default {
       var data = new FormData();
       var config = {
         method: 'get',
-        url: this.$store.state.host + 'categories',
+        url: this.$store.state.host + 'Category',
         headers: {
           'Accept': 'application/json',
         },
