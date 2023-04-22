@@ -18,10 +18,26 @@
           v-model="category"
           label="دسته بندی"
       ></v-select>
+      <p>جستجو برای: </p>
+      <v-radio-group
+          row
+          v-model="searchFor"
+          @change="$emit('type',searchFor)"
+      >
+        <v-radio
+            label="شرکت"
+            value="c">
+        </v-radio>
+        <v-radio
+            label="آگهی"
+            value="a"
+        >
+        </v-radio>
+      </v-radio-group>
       <v-btn
           class="my-8 mx-auto align-center white--text"
           color="#000930"
-          @click="$emit('search',{q:text,c:category})"
+          @click="$emit('search',{q:text,c:category, t:searchFor})"
       >
         جستجو
       </v-btn>
@@ -40,6 +56,7 @@ export default {
     },
   },
   data: () => ({
+    searchFor: 'c',
     text: '',
     category: '',
   })

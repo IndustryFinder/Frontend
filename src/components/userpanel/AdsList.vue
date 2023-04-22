@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <sidebar-navigation />
     <v-sheet fill-height color="transparent" class="pa-10">
       <v-row class="mb-5" align="center">
         <strong style="font-size: 1.5em">آگهی های من</strong>
@@ -22,8 +23,9 @@
 
 <script>
 import AdCard from "@/components/userpanel/AdCard";
+import SidebarNavigation from "@/components/userpanel/SidebarNavigation";
 export default {
-  components: {AdCard},
+  components: {SidebarNavigation, AdCard},
   data () {
     return {
       // adList: [

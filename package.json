@@ -25,9 +25,7 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "cypress": "^12.9.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-cypress": "^2.13.2",
     "eslint-plugin-vue": "^8.0.3",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
@@ -38,8 +36,7 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true,
-      "cypress/globals": true
+      "node": true
     },
     "extends": [
       "plugin:vue/essential",
@@ -48,9 +45,6 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "plugins": [
-      "cypress"
-    ],
     "rules": {}
   },
   "browserslist": [

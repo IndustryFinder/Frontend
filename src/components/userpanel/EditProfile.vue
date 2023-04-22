@@ -1,6 +1,7 @@
 <template>
     <v-app class="grey lighten-4" v-if="this.$vuetify.breakpoint.mdAndUp">
       <v-sheet color="transparent" elevation="0" class="pa-8">
+        <SidebarNavigation/>
         <h2 class="mb-5">ویرایش پروفایل</h2>
         <v-card
         class="card-desktop"
@@ -83,6 +84,7 @@
 
     <!-- change the mobile breakpoint -->
     <v-app v-else>
+        <SidebarNavigation/>
         <h2 class="title-res">ویرایش پروفایل</h2>
         <v-card
         class="card-res"
@@ -153,6 +155,7 @@
 </template>
 
 <script>
+import SidebarNavigation from "./SidebarNavigation.vue"
 export default {
     name: "EditProfile",
     data: () => ({
@@ -203,7 +206,7 @@ export default {
         });
       },
     },
-    components: {}
+    components: {SidebarNavigation}
 }
 </script>
 

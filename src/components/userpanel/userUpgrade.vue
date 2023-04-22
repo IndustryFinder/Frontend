@@ -1,6 +1,7 @@
 <template>
     <v-app class="grey lighten-4" v-if="this.$vuetify.breakpoint.mdAndUp">
       <v-sheet color="transparent" elevation="0" class="pa-8">
+        <SidebarNavigation/>
         <h2 class="mb-5">پروفایل شرکت</h2>
         <v-card
         class="card-desktop"
@@ -215,8 +216,12 @@
 </template>
 
 <script>
+import SidebarNavigation from './SidebarNavigation.vue'
 
 export default {
+  components: {
+    SidebarNavigation,
+  },
   data: () => ({
     selectedFile: '',
     name: '',

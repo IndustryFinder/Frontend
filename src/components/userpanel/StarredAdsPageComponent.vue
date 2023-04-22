@@ -1,8 +1,9 @@
 <template>
   <v-app>
+    <sidebar-navigation />
     <v-sheet fill-height color="transparent" class="pa-10">
       <v-row class="mb-5" align="center">
-        <strong style="font-size: 1.5em">نشانک ها</strong>
+        <strong style="font-size: 1.5em">آگهی های من</strong>
       </v-row>
       <hr class="my-3"/>
       <v-row justify="center" align="center" :dense="this.$vuetify.breakpoint.smAndDown">
@@ -22,8 +23,9 @@
 
 <script>
 import AdCard from "@/components/userpanel/AdCard";
+import SidebarNavigation from "@/components/userpanel/SidebarNavigation";
 export default {
-  components: {AdCard},
+  components: {SidebarNavigation, AdCard},
   data () {
     return {
       // adList: [
