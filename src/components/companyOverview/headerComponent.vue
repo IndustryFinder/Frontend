@@ -55,6 +55,7 @@
 
 <script>
 import { mdiMapMarker, mdiStar, mdiStarHalfFull, mdiStarOutline } from '@mdi/js'
+import axios from "axios";
 export default {
   props: [
       'companyName',
@@ -110,27 +111,16 @@ export default {
     async save () {
       if (this.saved) {
         try {
-          let FormData = require('form-data');
-          let data = new FormData();
-          data.append('token', this.$cookies.get('token'));
-          data.append('id', this.$route.params.id);
-          var axios = require('axios');
-          var config = {
-            method: 'delete',
-            url: this.$store.state.host + `user/bookmarks/del/${this.$route.params.id}`,
-            headers: {
-              'Accept': 'application/json',
-              'Authorization': 'Bearer '+this.$cookies.get('token'),
-              'Content-Type': 'multipart/form-data'
-            },
-            data : data
-          };
-          axios(config)
-              .then((response) => {
-                if (response.status === 200) {
-                  this.saved = false;
+          const response = await axios.delete(
+              `${this.$store.state.host}user/bookmarks/del/${this.$route.params.id}`,
+              {
+                headers: {
+                  'Accept': 'application/json',
+                  'Authorization': `Bearer ${this.$cookies.get('token')}`
                 }
-              })
+              }
+          );
+          console.log(response.data);
         } catch (error) {
           console.error(error);
         }
@@ -157,6 +147,20 @@ export default {
                 if (response.status === 200) {
                   this.saved = true;
                 }
+              })
+          var config = {
+            method: 'get',
+            url: this.$store.state.host + 'user/bookmarks',
+            headers: {
+              'Authorization': 'Bearer '+this.$cookies.get('token'),
+              'Accept': 'application/json',
+            },
+          };
+          // let that = this;
+          await axios(config)
+              .then(function (response) {
+                // that.adList = response.data;
+                console.log(response.data);
               })
         } catch (error) {
           console.error(error);
