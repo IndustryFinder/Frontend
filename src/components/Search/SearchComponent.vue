@@ -194,8 +194,15 @@ export default {
       let that = this;
       await axios(config)
           .then(function (response) {
-            that.result = response.data.data;
-            that.resultLength = response.data.last_page;
+            const dataString = response.data.replace(/int\((\d+)\)\n/g, "$1");
+            const jsonData = dataString.trim()
+            const startIndex = jsonData.indexOf('{')
+            const endIndex = jsonData.lastIndexOf('}') + 1
+            const cleanedJson = jsonData.slice(startIndex, endIndex)
+            const dataObject = JSON.parse(cleanedJson).data
+            const dataArray = dataObject;
+            that.result = dataArray;
+            that.resultLength = 4;
             that.isLoading = false;
           })
           .catch(function (error) {

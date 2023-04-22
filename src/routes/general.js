@@ -12,6 +12,6 @@ export default [
     {path: '/login', component: Login},
     {path: '/signup', component: Signup},
     {path: '/search', component: Search},
-    {path: '/c/:id', component: companyOverview},
+    {path: '/company/:id', component: companyOverview},
     {path: '/user/dashboard', component: dashboard},
 ]

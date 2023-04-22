@@ -105,7 +105,7 @@ export default {
           phone: '۰۲۱۸۸۸۸۸۸۸۸',
           email: 'kaleh@kaleh.kaleh',
           website: 'kaleh.kaleh',
-          owner: 'کاله کاله پور'
+          owner: 'کاله کاله پور',
         }
       }
     }
@@ -115,7 +115,7 @@ export default {
     'phone',
     'email',
     'website',
-    'owner'
+    'owner',
   ]
 }
 </script>

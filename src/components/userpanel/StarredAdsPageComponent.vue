@@ -66,11 +66,10 @@ export default {
           'Accept': 'application/json',
         },
       };
-      // let that = this;
+      let that = this;
       await axios(config)
           .then(function (response) {
-            // that.adList = response.data;
-            console.log(response.data());
+            that.adList = response.data;
           })
     },
   },

@@ -4,6 +4,7 @@
   <v-sheet class="py-10 px-15">
     <v-row>
       <header-component
+          :user_id="companyInfo.user_id.id"
           :company-name="companyInfo.name"
           :company-category="categoryName(companyInfo.category_id)"
       />
@@ -75,6 +76,7 @@ export default {
       await axios(config)
           .then(function (response) {
             that.companyInfo=response.data
+            console.log(response);
           })
           .catch(function (error) {
             console.log(error);

@@ -61,6 +61,7 @@ export default {
       'companyName',
       'companyCategory',
       'companyLocation',
+      'user_id'
   ],
   data () {
     return {
@@ -76,7 +77,7 @@ export default {
   },
 
   methods: {
-    async beforeMount() {
+    async mounted() {
       await this.issaved();
     },
     async issaved(){
@@ -88,7 +89,7 @@ export default {
         var axios0 = require('axios');
         var config0 = {
           method: 'get',
-          url: this.$store.state.host + `user/bookmarks/IsMarked/${this.$route.params.id}`,
+          url: this.$store.state.host + `user/bookmarks/IsMarked/${this.user_id}`,
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer '+this.$cookies.get('token'),
@@ -110,9 +111,10 @@ export default {
     },
     async save () {
       if (this.saved) {
+        this.saved = false;
         try {
           const response = await axios.delete(
-              `${this.$store.state.host}user/bookmarks/del/${this.$route.params.id}`,
+              `${this.$store.state.host}user/bookmarks/del/`+this.user_id,
               {
                 headers: {
                   'Accept': 'application/json',
@@ -129,12 +131,12 @@ export default {
           let FormData = require('form-data');
           let data = new FormData();
           data.append('token', this.$cookies.get('token'));
-          data.append('id', this.$route.params.id);
-          if (this.$route.params.id) data.append('id', this.id);
+          data.append('marked_id', this.$route.params.id);
+          data.append('user_id', this.user_id);
           let axios2 = require('axios');
           let config2 = {
             method: 'post',
-            url: this.$store.state.host + `user/bookmarks/add/${this.$route.params.id}`,
+            url: this.$store.state.host + `user/bookmarks/add/`+ this.user_id,
             headers: {
               'Accept': 'application/json',
               'Authorization': 'Bearer '+this.$cookies.get('token'),
@@ -144,24 +146,11 @@ export default {
           };
           axios2(config2)
               .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 200 && response.data.message === 'success') {
                   this.saved = true;
                 }
               })
-          var config = {
-            method: 'get',
-            url: this.$store.state.host + 'user/bookmarks',
-            headers: {
-              'Authorization': 'Bearer '+this.$cookies.get('token'),
-              'Accept': 'application/json',
-            },
-          };
-          // let that = this;
-          await axios(config)
-              .then(function (response) {
-                // that.adList = response.data;
-                console.log(response.data);
-              })
+
         } catch (error) {
           console.error(error);
         }
