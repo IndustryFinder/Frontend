@@ -114,7 +114,7 @@ export default {
         this.saved = false;
         try {
           const response = await axios.delete(
-              `${this.$store.state.host}user/bookmarks/del/`+this.user_id,
+              `${this.$store.state.host}user/bookmarks/del/247`,
               {
                 headers: {
                   'Accept': 'application/json',
@@ -130,13 +130,13 @@ export default {
         try {
           let FormData = require('form-data');
           let data = new FormData();
-          data.append('token', this.$cookies.get('token'));
-          data.append('marked_id', this.$route.params.id);
-          data.append('user_id', this.user_id);
+          // data.append('token', this.$cookies.get('token'));
+          // data.append('marked_id', this.$route.params.id);
+          // data.append('user_id', this.user_id);
           let axios2 = require('axios');
           let config2 = {
             method: 'post',
-            url: this.$store.state.host + `user/bookmarks/add/`+ this.user_id,
+            url: this.$store.state.host + `user/bookmarks/add/247`,
             headers: {
               'Accept': 'application/json',
               'Authorization': 'Bearer '+this.$cookies.get('token'),
