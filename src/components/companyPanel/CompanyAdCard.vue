@@ -3,10 +3,10 @@
     shaped
     elevation="12"
     class="pa-6 ma-6 white--text plan-card">
-    <v-card-title class="mb-1 mt-0">
+    <v-card-title class="mb-1 mt-0" >
       {{ ad.title }}
     </v-card-title>
-    <v-card-text class="my-2 mx-2">
+    <v-card-text class="my-2 mx-2" style="word-break: break-word;">
       <v-row class="white--text">
         <p>{{ ad.description }}</p>
       </v-row>

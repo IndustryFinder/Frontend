@@ -15,7 +15,7 @@
         <current-plan-component />
       </div>
       <ChargeWalletComponent @update-wallet="updateCredit"/>
-      <PurchasePlanComponent />
+      <PurchasePlanComponent @wallet-updated="updateCredit"/>
 
   </v-app>
 </template>

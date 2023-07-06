@@ -9,38 +9,50 @@
 
           <v-row>
             <v-spacer />
-              <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
-                <TopDisplayRowCardVue name="item" :item="{ Title: 'بازدید از آگهی های شما', Info: '۶۴'}" />
-              </v-col>
-              <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
-                <TopDisplayRowCardVue name="item" :item="{ Title: 'آگهی های شما', Info: this.adsList.length}" />
-              </v-col>
-              <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
-                <TopDisplayRowCardVue name="item" :item="{ Title: 'آگهی های مرتبط', Info: '4'}" />
-              </v-col>
-              <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
-                <TopDisplayRowCardVue name="item" :item="{ Title: 'کل آگهی ها', Info: '۳۲۵'}" />
-              </v-col>
+            <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
+              <TopDisplayRowCardVue
+                name="item"
+                :item="{ Title: 'بازدید از آگهی های شما', Info: totalVisit }"
+              />
+            </v-col>
+            <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
+              <TopDisplayRowCardVue
+                name="item"
+                :item="{ Title: 'آگهی‌های باقی‌مانده', Info: ads }"
+              />
+            </v-col>
+            <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
+              <TopDisplayRowCardVue
+                name="item"
+                :item="{ Title: 'آگهی های مرتبط', Info: '4' }"
+              />
+            </v-col>
+            <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
+              <TopDisplayRowCardVue
+                name="item"
+                :item="{ Title: 'پلن شما', Info: plan }"
+              />
+            </v-col>
             <v-spacer />
           </v-row>
         </div>
         <v-row>
-          <AdsContainerVue :ads-list="adsList"/>
+          <AdsContainerVue :adsList="adsList" />
         </v-row>
       </v-sheet>
-      
+
       <v-sheet v-if="this.$vuetify.breakpoint.mdAndUp" class="pa-8">
         <v-row>
           <v-col class="v-col" cols="6">
-            <DashboardChecklistVue  class="mx-8"/>
+            <DashboardChecklistVue class="mx-8" />
           </v-col>
           <v-col class="v-col" cols="6">
-            <UnansweredTicketsVue class="mx-8"/>
+            <UnansweredTicketsVue class="mx-8" />
           </v-col>
         </v-row>
       </v-sheet>
       <div v-else>
-        <DashboardChecklistVue class="mb-3"/>
+        <DashboardChecklistVue class="mb-3" />
         <UnansweredTicketsVue />
       </div>
     </v-sheet>
@@ -55,49 +67,71 @@ import UnansweredTicketsVue from "./UnansweredTickets.vue";
 
 export default {
   components: {
-    UnansweredTicketsVue, AdsContainerVue, TopDisplayRowCardVue,
-    DashboardChecklistVue
+    UnansweredTicketsVue,
+    AdsContainerVue,
+    TopDisplayRowCardVue,
+    DashboardChecklistVue,
   },
   onMounted() {
     this.$vuetify.rtl = true;
   },
-  data () {
+  data() {
     return {
-      adsList: [
-      ],
-    }
+      adsList: [],
+      totalVisit:'',
+      ads:'',
+      related:'',
+      plan:''
+    };
   },
   methods: {
-    async adFinder(){
-      var axios = require('axios');
-      var FormData = require('form-data');
-      var data = new FormData();
-      data.append('sender', this.$cookies.get('user').id);
-
+    async adFinder() {
+      var axios = require("axios");
       var config = {
-        method: 'post',
-        url: this.$store.state.host + 'ad/search',
+        method: "get",
+        url: this.$store.state.host + "ad/searchBySender",
         headers: {
-          'Accept': 'application/json',
+          Accept: "application/json",
+          Authorization: "Bearer " + this.$cookies.get("token"),
         },
-        data : data
       };
       let that = this;
-      axios(config)
-          .then(function (response) {
-            that.adsList=(response.data.data)
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-    }
+      await axios(config).then(function (response) {
+        //console.log(response.data);
+        that.adList = response.data;
+      });
+    },
+    async userInfo() {
+      let axios = require("axios");
+      let config = {
+        method: "get",
+        url: this.$store.state.host + "authentication/this",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + this.$cookies.get("token"),
+        },
+      };
+      let that = this;
+      await axios(config)
+        .then(function (response) {
+          that.$cookies.set("user", response.data);
+          this.totalVisit = response.company.ViewCount;
+          this.ads = response.AdsRemaining;
+          //fix this later
+          this.related = 0;
+          this.plan = response.activePlan;
+        })
+        .catch(() => {
+          that.$cookies.remove("user");
+          that.$cookies.remove("token");
+        });
+    },
   },
   beforeMount() {
-    this.adFinder()
-  }
-}
+    this.adFinder();
+    this.userInfo();
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

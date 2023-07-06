@@ -128,28 +128,28 @@ export default {
           Color: "rgba(55, 81, 255, 0)",
           Days: 60,
           Ads: 10,
-          Price: 20000,
+          Price: 25000,
         },
         {
           Title: "پرو",
           Color: "rgba(55, 81, 255, 0.1)",
           Days: 60,
           Ads: 15,
-          Price: 40000,
+          Price: 50000,
         },
         {
           Title: "دلوکس",
           Color: "rgba(55, 81, 255, 0.2)",
           Days: 90,
           Ads: 30,
-          Price: 60000,
+          Price: 75000,
         },
         {
           Title: "مکس",
           Color: "rgba(55, 81, 255, 0.3)",
           Days: 120,
           Ads: 45,
-          Price: 80000,
+          Price: 100000,
         },
       ],
     };
@@ -169,7 +169,11 @@ export default {
         },
         // data: data,
       };
-      await axios(config).then();
+      let that = this;
+      await axios(config).then(function (response) {
+        console.log(response.data.Balance);
+        that.$emit("wallet-updated", response.data.Balance);
+      });
     }
   }
 };

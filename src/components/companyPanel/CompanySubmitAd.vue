@@ -4,12 +4,12 @@
     <v-sheet color="transparent" elevation="0" class="pa-8">
       <strong class="mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-desktop mx-8 mb-8"
+        class="card-desktop mx-16 mb-8"
         width="70vw"
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -250,10 +250,8 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 4em;
 }
 .img {

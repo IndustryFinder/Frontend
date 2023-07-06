@@ -48,15 +48,6 @@ export default {
       
     }
   },
-  // methods:{
-  //   // UpdateBalance (){
-  //   //   this.credit += this.newCredit;
-  //   //   console.log(this.credit);
-  //   // },
-  // },
-  // created() {
-  //   this.UpdateBalance();
-  // }
 }
 </script>
 
