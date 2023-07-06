@@ -4,7 +4,7 @@
     <v-sheet color="transparent" elevation="0" class="pa-8">
       <strong class="mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-desktop mx-16 mb-8"
+        class="card-desktop mx-8 mb-8"
         width="70vw"
         height="80%"
         elevation="12"
@@ -77,7 +77,7 @@
 
   <!-- responsive -->
   <v-app v-else>
-    <CompanySidebarNavigationVue />
+    <!-- <CompanySidebarNavigationVue /> -->
     <v-sheet class="pa-5" color="transparent" elevation="0">
       <h2 class="mb-5">ثبت آگهی</h2>
       <v-card
@@ -158,9 +158,7 @@
 </template>
 
 <script>
-import CompanySidebarNavigationVue from "./CompanySidebarNavigation.vue";
 export default {
-  components: { CompanySidebarNavigationVue },
   data: () => ({
     categories: [],
     name: "",
@@ -168,10 +166,16 @@ export default {
     category: "",
   }),
   methods: {
-    Toaster(msg, t) {
+    errorToaster(msg) {
       this.$toast.open({
-        message: msg, 
-        type: t,
+        message: msg,
+        type: "error",
+      });
+    },
+    successToaster(msg) {
+      this.$toast.open({
+        message: msg,
+        type: "success",
       });
     },
     async categoryFinder() {
@@ -214,9 +218,9 @@ export default {
       };
       let that = this;
       await axios(config)
-        .then(function (response) {
-          console.log(response.data);
-          that.Toaster("آگهی با موفقیت ثبت شد", "success"); 
+        .then(function () {
+          // console.log(response.data);
+          that.Toaster("آگهی با موفقیت ثبت شد", "success");
         })
         .catch(function (error) {
           if (error.response.status === 422) {

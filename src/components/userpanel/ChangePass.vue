@@ -2,7 +2,7 @@
   <!-- desktop -->
   <v-app v-if="this.$vuetify.breakpoint.mdAndUp">
     <v-sheet color="transparent" elevation="0" class="pa-8">
-      <strong class="mb-5 mr-5">تغییر رمز عبور</strong>
+      <strong class="mb-5 mx-8">تغییر رمز عبور</strong>
       <v-card
         class="card-desktop"
         style="margin-bottom: 4em"
@@ -10,7 +10,7 @@
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -215,7 +215,6 @@ export default {
   margin-top: 5em;
 }
 .card-desktop {
-  border: 5px dashed var(--sd_primary);
   margin-top: 4em;
   margin-bottom: 2em;
   margin-right: 2em;
@@ -223,7 +222,6 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 strong {
   font-size: 1.5em;

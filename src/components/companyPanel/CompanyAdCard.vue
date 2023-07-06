@@ -1,8 +1,8 @@
 <template>
   <v-card
     shaped
-    elevation="6"
-    class="pa-6 ma-6 white--text purple-background">
+    elevation="12"
+    class="pa-6 ma-6 white--text plan-card">
     <v-card-title class="mb-1 mt-0">
       {{ ad.title }}
     </v-card-title>
@@ -44,3 +44,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.plan-card {
+  background-image: url("../../assets/plan-background.svg") !important;
+}
+</style>

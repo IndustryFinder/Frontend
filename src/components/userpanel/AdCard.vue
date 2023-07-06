@@ -1,35 +1,30 @@
 <template>
   <v-card
-      rounded
-      elevation="3"
-      class="pa-2 ma-2 custom-card-bookmarked">
+    shaped
+    elevation="12"
+    class="pa-6 ma-6 white--text plan-card">
     <v-card-title class="mb-1 mt-0">
-      {{ ad.name }}
+      {{ ad.title }}
     </v-card-title>
-    <v-card-text class="my-1">
-      <span class="card-label-bookmarked">آدرس شرکت: </span>
+    <v-card-text class="my-2 mx-2">
+      <v-row class="white--text">
+        <p>{{ ad.description }}</p>
+      </v-row>
+      <v-row class="my-4 mx-2 white--text">
+        <v-icon class="white--text">mdi-eye</v-icon>
+        {{ ad.ViewCount }}
+      </v-row>
+      <span v-if="ad.receiver">
+        <v-row class="my-4 mx-2 white--text">
+        <v-icon class="white--text">mdi-status</v-icon>
+        <p>پذیرفته شده</p>
+      </v-row>
+      <v-row>
+        <v-icon class="white--text">mdi-user</v-icon>
+        {{ ad.receiver.name }}
+      </v-row>
+    </span>
     </v-card-text>
-    <v-card-text class="my-1">
-      <span class="description-bookmarked">{{ ad.description.replace(/n/g, '').replace("\\",'').replace("آدرس شرکت", '')}} </span>
-    </v-card-text>
-    <v-card-text class="my-1">
-      <span class="card-label-bookmarked">شماره تماس: </span>
-    </v-card-text>
-    <v-card-text class="my-1">
-      <span class="description-bookmarked">{{ ad.phone }} </span>
-    </v-card-text>
-    <v-card-text class="my-1">
-      <span class="card-label-bookmarked">ایمیل شرکت: </span>
-    </v-card-text>
-    <v-card-text class="my-1">
-      <span class="description-bookmarked">{{ ad.email }} </span>
-    </v-card-text>
-    <v-card-actions class="justify-center align-center mt-1 mb-0">
-      <v-btn width="80%" text color="#FFFFFFFF" :to="`/c/${ad.id}`">
-        <v-icon color="#FFFFFFFF" class="ml-2" style="bottom: 1px">{{ ImdiInfo }}</v-icon>
-        <span>اطلاعات بیشتر</span>
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -51,20 +46,8 @@ export default {
 </script>
 
 <style scoped>
-.custom-card-bookmarked {
-  background-color: #112d4f;
+.plan-card {
+  background-image: url("../../assets/plan-background.svg");
   color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-label-bookmarked {
-  font-weight: bold;
-  color: #fff;
-}
-
-.description-bookmarked {
-  font-size: 16px;
-  color: yellow;
 }
 </style>

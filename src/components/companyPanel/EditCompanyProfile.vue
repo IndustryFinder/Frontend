@@ -8,7 +8,7 @@
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>

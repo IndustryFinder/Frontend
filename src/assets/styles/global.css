@@ -22,3 +22,6 @@ strong{
     rgba(99, 99, 245, 1) 68%
   ) !important;
 }
+/* .dashed-border{
+  border: 4px dashed var(--sd_primary);
+} */
