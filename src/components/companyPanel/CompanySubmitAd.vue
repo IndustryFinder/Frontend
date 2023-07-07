@@ -9,7 +9,7 @@
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -77,16 +77,15 @@
 
   <!-- responsive -->
   <v-app v-else>
-    <CompanySidebarNavigationVue />
     <v-sheet class="pa-5" color="transparent" elevation="0">
-      <h2 class="mb-5">ثبت آگهی</h2>
+      <strong class="mb-5 mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-res"
+        class="card-res mx-16"
         width="85vw"
         height="90%"
-        elevation="4"
+        elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -158,9 +157,7 @@
 </template>
 
 <script>
-import CompanySidebarNavigationVue from "./CompanySidebarNavigation.vue";
 export default {
-  components: { CompanySidebarNavigationVue },
   data: () => ({
     categories: [],
     name: "",
@@ -168,10 +165,16 @@ export default {
     category: "",
   }),
   methods: {
-    Toaster(msg, t) {
+    errorToaster(msg) {
       this.$toast.open({
-        message: msg, 
-        type: t,
+        message: msg,
+        type: "error",
+      });
+    },
+    successToaster(msg) {
+      this.$toast.open({
+        message: msg,
+        type: "success",
       });
     },
     async categoryFinder() {
@@ -214,9 +217,8 @@ export default {
       };
       let that = this;
       await axios(config)
-        .then(function (response) {
-          console.log(response.data);
-          that.Toaster("آگهی با موفقیت ثبت شد", "success"); 
+        .then(function () {
+          that.Toaster("آگهی با موفقیت ثبت شد", "success");
         })
         .catch(function (error) {
           if (error.response.status === 422) {
@@ -246,10 +248,8 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 4em;
 }
 .img {

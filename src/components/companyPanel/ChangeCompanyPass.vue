@@ -4,12 +4,12 @@
     <v-sheet color="transparent" elevation="0" class="pa-8">
       <strong class="mx-16">تغییر رمز عبور</strong>
       <v-card
-        class="card-desktop mx-16 mb-8"
+        class="card-desktop mx-8 mx-16 pa-8"
         width="70vw"
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -58,7 +58,7 @@
                 <!-- save button -->
                 <v-btn
                   class="btn-mobile"
-                  elevation="4"
+                  elevation="12"
                   large
                   outlined
                   raised
@@ -93,23 +93,22 @@
 
   <!-- responsive -->
   <v-app v-else>
-    <!-- what's the n? -->
-    <CompanySidebarNavigationVue n />
     <v-sheet class="pa-5" color="transparent" elevation="0">
-      <h2 class="mb-5">ویرایش رمز عبور</h2>
+      <strong class="mb-5 mx-16 ">ویرایش رمز عبور</strong>
       <v-card
-        class="card-res"
+        class="card-res mx-16 my-8"
         width="85vw"
         height="90%"
-        elevation="4"
+        elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
           <v-form class="px-3">
             <v-row class="d-flex flex-column">
               <v-col cols="12" class="px-8 col">
+                <p>رمز عبور فعلی</p>
                 <v-text-field
                   label="رمز عبور فعلی"
                   v-model="password"
@@ -121,7 +120,7 @@
                   style="direction: ltr !important"
                 >
                 </v-text-field>
-
+                <p>رمز عبور جدید</p>
                 <v-text-field
                   label="رمز عبور جدید"
                   v-model="newPassword"
@@ -133,7 +132,7 @@
                   style="direction: ltr !important"
                 >
                 </v-text-field>
-
+                <p>تکرار رمز عبور</p>
                 <v-text-field
                   label="تکرار رمز عبور جدید"
                   v-model="newPasswordConfirm"
@@ -182,9 +181,7 @@
 
 <script>
 import { mdiEye, mdiEyeOff } from "@mdi/js";
-import CompanySidebarNavigationVue from "./CompanySidebarNavigation.vue";
 export default {
-  components: { CompanySidebarNavigationVue },
   data: () => ({
     password: "",
     newPassword: "",
@@ -252,9 +249,6 @@ export default {
 </script>
 
 <style scoped>
-strong {
-  font-size: 1.5em;
-}
 .col * {
   margin: 0.5em;
 }
@@ -265,12 +259,9 @@ strong {
   margin-top: 1em;
 }
 .card-res {
-  margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 4em;
 }
 .img {

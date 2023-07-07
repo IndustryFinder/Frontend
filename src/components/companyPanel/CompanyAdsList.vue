@@ -5,7 +5,7 @@
         <strong>آگهی های من</strong>
       </v-row>
 
-      <v-row justify="center" align="center" :dense="this.$vuetify.breakpoint.smAndDown">
+      <v-row class="mx-4" align="center" :dense="this.$vuetify.breakpoint.smAndDown">
         <v-col
             v-for="(ad, index) in adList"
             :key="index"
@@ -49,7 +49,6 @@ export default {
       await axios(config)
         .then(
           function (response) {
-            console.log(response.data);
             that.adList = response.data;
           }
         )
@@ -61,6 +60,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>

@@ -2,9 +2,9 @@
   <v-sheet color="transparent" class="pa-4">
     <div class="pa-4">
       <v-row class="mt-16">
-        <strong style="font-size: 1.5em">آگهی ها</strong>
+        <strong>آگهی ها</strong>
       </v-row>
-      <!-- <hr class="my-3"/> -->
+ 
       <v-row>
         <v-spacer />
         <v-col v-for="(item, index) in adsToShow" cols="12" md="6" lg="6" xl="6" :key="index">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import AdsListAdCard from "@/components/userpanel/AdsListAdCard";
+import AdsListAdCard from "@/components/companyPanel/AdsListAdCard.vue";
 import { mdiChevronDoubleDown } from '@mdi/js'
 export default {
   components: {AdsListAdCard},

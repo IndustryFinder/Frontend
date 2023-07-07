@@ -1,14 +1,5 @@
 <template>
   <v-card class="overflow-hidden" dir="rtl">
-    <v-app-bar
-      v-if="$vuetify.breakpoint.smAndDown"
-      color="grey darken-4"
-      dark
-      dir="rtl"
-    >
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-    </v-app-bar>
-
     <v-navigation-drawer
 		permanent
 		v-model="$data[$vuetify.breakpoint.smAndDown ? 'drawer' : 'value']"

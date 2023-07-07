@@ -8,7 +8,7 @@
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -78,7 +78,9 @@
               </v-col>
               <v-col cols="6" class="px-8 col">
                 <v-row>
-                  <v-img src="@/assets/profile.png" class="img" height="250">
+                  <v-img src="@/assets/profile.png" 
+                  class="img" 
+                  height="250px">
                   </v-img>
                 </v-row>
 
@@ -88,6 +90,7 @@
                     name="input-7-4"
                     label="توضیحات شرکت"
                     value=""
+                    v-model="description"
                   ></v-textarea>
                 </v-row>
               </v-col>
@@ -100,15 +103,14 @@
 
   <!-- change the mobile breakpoint -->
   <v-app v-else>
-    <CompanySidebarNavigationVue />
-    <h2 class="title-res">ویرایش پروفایل شرکت</h2>
+    <strong class="title-res">ویرایش پروفایل شرکت</strong>
     <v-card
-      class="card-res"
+      class="card-res mx-16"
       width="90vw"
       height="85%"
-      elevation="4"
+      elevation="12"
       raised
-      rounded
+      shaped
       outlined
     >
       <v-card-text>
@@ -152,6 +154,7 @@
                   name="input-7-4"
                   label="توضیحات شرکت"
                   value=""
+                  description
                 ></v-textarea>
               </v-row>
 
@@ -196,6 +199,7 @@ export default {
     email: "",
     phone: "",
     selectedFile: null,
+    description: "",
   }),
 
   methods: {
@@ -205,12 +209,16 @@ export default {
       var data = new FormData();
       if (this.name) data.append("name", this.name);
       if (this.phone) data.append("phone", this.phone);
-      if (this.selectedFile) data.append("avatar", this.selectedFile);
+      if (this.selectedFile) data.append("logo", this.selectedFile);
       if (this.email) data.append("email", this.email);
+      if (this.description) data.append("description", this.description);
 
       var config = {
         method: "post",
-        url: this.$store.state.host + "company/update/" + this.$cookies.get('user').company.id,
+        url:
+          this.$store.state.host +
+          "company/update/" +
+          this.$cookies.get("user").company.id,
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + this.$cookies.get("token"),
@@ -239,14 +247,11 @@ export default {
       });
     },
   },
-  components: { },
+  components: {},
 };
 </script>
 
 <style scoped>
-strong {
-  font-size: 1.5em;
-}
 .col * {
   margin: 0.5em;
 }
@@ -261,12 +266,9 @@ strong {
   margin: 2em;
 }
 .card-res {
-  margin: 1em;
-  padding: 1em;
-  border: 2px dashed var(--sd_primary);
+  padding: 1.5em;
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 3em;
 }
 .row-res {

@@ -2,9 +2,8 @@
   <v-app>
     <v-sheet fill-height color="transparent" class="pa-10">
       <v-row class="mb-5 mx-16" align="center">
-        <strong>نشانک های من</strong>
+        <strong>نشانک‌های من</strong>
       </v-row>
-      <!-- <hr class="my-3"/> -->
       <v-row
       justify="center"
       align="center"
@@ -39,11 +38,6 @@ export default {
       category: "",
     };
   },
-  computed: {
-    starredAds() {
-      return this.adList.filter((x) => x.isStarred);
-    },
-  },
   methods: {
     toggleStarred(index) {
       if (this.deleteBookmark(this.adList[index].id)) {
@@ -75,7 +69,6 @@ export default {
           Authorization: "Bearer " + this.$cookies.get('token'),
         },
       };
-
       axios
         .request(config)
         .then(() => {
@@ -84,6 +77,11 @@ export default {
         .catch(() => {
           return false;
         });
+    },
+  },
+  computed: {
+    starredAds() {
+      return this.adList.filter((x) => x.isStarred);
     },
   },
   created() {

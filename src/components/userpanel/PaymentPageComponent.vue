@@ -14,8 +14,8 @@
       <wallet-component class="mb-3" :key="credit"/>
       <current-plan-component />
     </div>
-    <ChargeWalletComponent @addCash="addToWallet"/>
-    <PurchasePlanComponent />
+    <ChargeWalletComponent @addCash="addToWallet" />
+    <PurchasePlanComponent class="mx-2"/>
   </v-app>
 </template>
 
@@ -164,7 +164,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

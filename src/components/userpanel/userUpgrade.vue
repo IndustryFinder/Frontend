@@ -1,7 +1,7 @@
 <template>
   <v-app class="grey lighten-4" v-if="this.$vuetify.breakpoint.mdAndUp">
     <v-sheet color="transparent" elevation="0" class="pa-8">
-      <strong class="mb-5">پروفایل شرکت</strong>
+      <strong class="mb-5 mx-8">مشخصات پروفایل شرکتی</strong>
       <v-card
         class="card-desktop"
         style="margin-bottom: 2em"
@@ -9,7 +9,7 @@
         height="87%"
         elevation="4"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -305,15 +305,13 @@ export default {
 
 <style scoped>
 .card-desktop {
-  border: 5px dashed var(--sd_primary);
-  margin-top: 4em;
+  margin-top: 2em;
   margin-bottom: 2em;
   margin-right: 2em;
 }
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 strong {
   font-size: 1.5em;

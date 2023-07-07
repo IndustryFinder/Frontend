@@ -2,15 +2,14 @@
   <!-- desktop -->
   <v-app v-if="this.$vuetify.breakpoint.mdAndUp">
     <v-sheet color="transparent" elevation="0" class="pa-8">
-      <strong class="mb-5 mr-5">ثبت آگهی</strong>
+      <strong class="mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-desktop"
-        style="margin-bottom: 4em"
+        class="card-desktop mx-8 mb-8"
         width="70vw"
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -66,7 +65,6 @@
                   v-model="category"
                   label="دسته بندی"
                 ></v-select>
-
                 <v-img src="@/assets/submitAd.png" class="img"></v-img>
               </v-col>
             </v-row>
@@ -79,14 +77,14 @@
   <!-- responsive -->
   <v-app v-else>
     <v-sheet class="pa-5" color="transparent" elevation="0">
-      <strong class="mb-5">ثبت آگهی</strong>
+      <strong class="mb-5 mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-res"
+        class="card-res mx-16"
         width="85vw"
         height="90%"
-        elevation="4"
+        elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -158,7 +156,6 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     categories: [],
@@ -225,7 +222,7 @@ export default {
         .catch(function (error) {
           if (error.response.status === 422) {
             for (let err in error.response.data.errors) {
-              that.errorToaster(error.response.data.errors[err][0]);
+              that.errorToaster(error.response.data.errors[err][0], "error");
             }
           }
         });
@@ -239,7 +236,6 @@ export default {
 
 <style scoped>
 .card-desktop {
-  border: 5px dashed var(--sd_primary);
   margin-top: 4em;
   margin-bottom: 2em;
   margin-right: 2em;
@@ -247,7 +243,6 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 strong {
   font-size: 1.5em;

@@ -1,14 +1,14 @@
 <template>
   <v-app class="grey lighten-4" v-if="this.$vuetify.breakpoint.mdAndUp">
     <v-sheet color="transparent" elevation="0" class="pa-8">
-      <strong class="mt-4">ویرایش پروفایل</strong>
+      <strong class="mb-5 mx-8">ویرایش پروفایل</strong>
       <v-card
         class="card-desktop"
         width="70vw"
         height="80%"
         elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -43,8 +43,8 @@
                   ></v-text-field
                 ></v-row>
 
-                                <!-- save button -->
-                                <v-btn
+                <!-- save button -->
+                <v-btn
                   class="btn"
                   elevation="4"
                   large
@@ -65,7 +65,8 @@
                   large
                   raised
                   type="reset"
-                  >لغو</v-btn>
+                  >لغو</v-btn
+                >
               </v-col>
               <v-col cols="6" class="px-8 col">
                 <v-row>
@@ -190,7 +191,7 @@ export default {
       var data = new FormData();
       if (this.name) data.append("name", this.name);
       if (this.phone) data.append("phone", this.phone);
-      if (this.selectedFile) data.append("avatar", this.selectedFile);
+      if (this.selectedFile) data.append("logo", this.selectedFile);
       if (this.email) data.append("email", this.email);
 
       var config = {
@@ -230,7 +231,6 @@ export default {
 
 <style scoped>
 .card-desktop {
-  border: 5px dashed var(--sd_primary);
   margin-top: 4em;
   margin-bottom: 2em;
   margin-right: 2em;
@@ -238,10 +238,6 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
-}
-strong {
-  font-size: 1.5em;
 }
 .btn-mobile {
   margin-top: 1em;
