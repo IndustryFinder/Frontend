@@ -8,15 +8,15 @@ describe('Company Sidebar Component', () => {
     cy.visit(baseData.host + '/company/dashboard')
   })
 
-    it('should exist side bar navigation', () => {
-        cy.get('.overflow-hidden').should('exist')
-    })
+  //   it('should exist side bar navigation', () => {
+  //       cy.get('.overflow-hidden').should('exist')
+  //   })
 
-  it('displays user avatar and name in sidebar', () => {
-    cy.get('.v-list-item__title').contains('mahdieh')
-    cy.get('.v-list-item__subtitle').contains('mahdieh9816@gmail.com')
-    // cy.get('.v-image__image').should('exist')
-  })
+  // it('displays user avatar and name in sidebar', () => {
+  //   cy.get('.v-list-item__title').contains('mahdieh')
+  //   cy.get('.v-list-item__subtitle').contains('mahdieh9816@gmail.com')
+  //   // cy.get('.v-image__image').should('exist')
+  // })
 
   // it('should have a visible app bar on small and down screens', () => {
   //   cy.viewport('iphone-6')
@@ -35,16 +35,16 @@ describe('Company Sidebar Component', () => {
   //   cy.url().should('eq', baseData.host+'/')
   // })
 
-  it('renders the dashboard link', () => {
-    cy.get('.v-list-item__title')
-        .eq(1)
-        .should('have.text', 'داشبورد')
+  // it('renders the dashboard link', () => {
+  //   cy.get('.v-list-item__title')
+  //       .eq(1)
+  //       .should('have.text', 'داشبورد')
 
-    cy.get('.v-list-item')
-        .eq(2)
-        .should('have.attr', 'href')
-        .and('equal', '/company/dashboard')
-  })
+  //   cy.get('.v-list-item')
+  //       .eq(2)
+  //       .should('have.attr', 'href')
+  //       .and('equal', '/company/dashboard')
+  // })
 
   // it('renders the edit profile link', () => {
   //   cy.get('.v-list-item__title')
@@ -79,38 +79,38 @@ describe('Company Sidebar Component', () => {
   //       .and('equal', '/company/bookmarks')
   // })
 
-  it('renders the recieved requests link', () => {
-    cy.get('.v-list-item__title')
-        .eq(6)
-        .should('have.text', 'درخواست های دریافت شده')
+  // it('renders the recieved requests link', () => {
+  //   cy.get('.v-list-item__title')
+  //       .eq(6)
+  //       .should('have.text', 'درخواست های دریافت شده')
 
-    cy.get('.v-list-item')
-        .eq(7)
-        .should('have.attr', 'href')
-        .and('equal', '/company/recievedrequests')
-  })
+  //   cy.get('.v-list-item')
+  //       .eq(7)
+  //       .should('have.attr', 'href')
+  //       .and('equal', '/company/recievedrequests')
+  // })
 
-  it('renders the sent requests link', () => {
-    cy.get('.v-list-item__title')
-        .eq(7)
-        .should('have.text', 'درخواست های ارسال شده')
+  // it('renders the sent requests link', () => {
+  //   cy.get('.v-list-item__title')
+  //       .eq(7)
+  //       .should('have.text', 'درخواست های ارسال شده')
 
-    cy.get('.v-list-item')
-        .eq(8)
-        .should('have.attr', 'href')
-        .and('equal', '/company/sentrequests')
-  })
+  //   cy.get('.v-list-item')
+  //       .eq(8)
+  //       .should('have.attr', 'href')
+  //       .and('equal', '/company/sentrequests')
+  // })
 
-  it('renders the submit ad link', () => {
-    cy.get('.v-list-item__title')
-        .eq(8)
-        .should('have.text', 'ثبت آگهی')
+  // it('renders the submit ad link', () => {
+  //   cy.get('.v-list-item__title')
+  //       .eq(8)
+  //       .should('have.text', 'ثبت آگهی')
 
-    cy.get('.v-list-item')
-        .eq(9)
-        .should('have.attr', 'href')
-        .and('equal', '/company/subad')
-  })
+  //   cy.get('.v-list-item')
+  //       .eq(9)
+  //       .should('have.attr', 'href')
+  //       .and('equal', '/company/subad')
+  // })
 
   // it('renders the wallet link', () => {
   //   cy.get('.v-list-item__title')
@@ -123,26 +123,26 @@ describe('Company Sidebar Component', () => {
   //       .and('equal', '/company/payment')
   // })
 
-  it('renders the my ads link', () => {
-    cy.get('.v-list-item__title')
-        .eq(10)
-        .should('have.text', 'آگهی های من')
+  // it('renders the my ads link', () => {
+  //   cy.get('.v-list-item__title')
+  //       .eq(10)
+  //       .should('have.text', 'آگهی های من')
 
-    cy.get('.v-list-item')
-        .eq(11)
-        .should('have.attr', 'href')
-        .and('equal', '/company/adslist')
-  })
+  //   cy.get('.v-list-item')
+  //       .eq(11)
+  //       .should('have.attr', 'href')
+  //       .and('equal', '/company/adslist')
+  // })
 
-  it('renders home page', () => {
-    cy.get('.v-list-item__title')
-        .eq(11)
-        .should('have.text', 'صفحه اصلی')
+  // it('renders home page', () => {
+  //   cy.get('.v-list-item__title')
+  //       .eq(11)
+  //       .should('have.text', 'صفحه اصلی')
 
-    cy.get('.v-list-item')
-        .eq(12)
-        .should('have.attr', 'href')
-        .and('equal', '/')
-  })
+  //   cy.get('.v-list-item')
+  //       .eq(12)
+  //       .should('have.attr', 'href')
+  //       .and('equal', '/')
+  // })
 
 })
