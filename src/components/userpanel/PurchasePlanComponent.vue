@@ -1,7 +1,7 @@
 <template>
   <v-sheet color="transparent" class="pa-4">
     <div class="pa-4">
-      <v-row class="mb-5">
+      <v-row class="mb-5 mx-8">
         <strong>خرید پلن</strong>
       </v-row>
 

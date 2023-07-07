@@ -11,7 +11,7 @@
             <v-col class="cols" cols="12" sm="6" md="4" lg="4" xl="2">
               <top-display-row
                 name="item"
-                :item="{ Title: 'بازدید از صفحه شرکت شما', Info: totalVisit }"
+                :item="{ Title: 'موجودی حساب شما', Info: wallet }"
               />
             </v-col>
             <v-col class="cols" cols="12" sm="6" md="4" lg="4" xl="2">
@@ -36,6 +36,7 @@
           </v-row>
         </div>
       </v-sheet>
+
       <ads-container :ads-list="adsList" />
 
       <v-sheet v-if="this.$vuetify.breakpoint.mdAndUp" class="pa-8">
@@ -72,7 +73,7 @@ export default {
   data() {
     return {
       adsList: [],
-      totalVisit:'',
+      wallet:'',
       ads:'',
       companyAds:'',
       plan:''
@@ -109,7 +110,7 @@ export default {
       let that = this;
       await axios(config)
         .then(function (response) {
-          that.totalVisit = response.data.company.ViewCount;
+          that.wallet = response.data.wallet;
           that.ads = response.data.AdsRemaining;
           that.plan = response.data.activePlan;
         })

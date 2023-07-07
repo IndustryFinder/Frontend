@@ -3,7 +3,7 @@
     <v-sheet v-if="this.$vuetify.breakpoint.mdAndUp">
       <v-row>
         <v-col cols="6">
-          <wallet-component :credit="balance"/>
+          <wallet-component :key="credit"/>
         </v-col>
         <v-col cols="6">
           <current-plan-component />
@@ -11,11 +11,11 @@
       </v-row>
     </v-sheet>
     <div v-else>
-      <wallet-component class="mb-3" :credit="balance"/>
+      <wallet-component class="mb-3" :key="credit"/>
       <current-plan-component />
     </div>
-    <ChargeWalletComponent @update-wallet="updateCredit"/>
-    <PurchasePlanComponent @wallet-updated="updateCredit"/>
+    <ChargeWalletComponent @addCash="addToWallet" />
+    <PurchasePlanComponent class="mx-2"/>
   </v-app>
 </template>
 
@@ -36,8 +36,7 @@ export default {
         Deluxe: '#cce3de',
         Max: '#a4c3b2'
       },
-      changedCredit: '',
-      balance: 0,
+      credit: 0
     }
   },
   watch: {
@@ -165,7 +164,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
