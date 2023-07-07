@@ -4,11 +4,11 @@
       <v-row class="mb-5">
         <strong>خرید پلن</strong>
       </v-row>
-
       <v-row v-if="this.$vuetify.breakpoint.mdAndUp">
         <v-col v-for="(plan, index) in plans" :key="index" cols="3">
           <v-card width="100%" elevation="12" class="rounded-xl pa-4 plan-card">
             <v-card-text class="white--text">
+
               <v-row class="my-4" style="font-size: 1.4em; font-weight: bolder">
                 <span class="white--text">پلن:</span>
                 <v-spacer />
@@ -174,6 +174,24 @@ export default {
         console.log(response.data.Balance);
         that.$emit("wallet-updated", response.data.Balance);
       });
+    }
+  },
+  methods:{
+    async buyPlan(index){
+      var axios = require("axios");
+      // var FormData = require("form-data");
+      // var data = new FormData();
+      // data.append("description", this.message);
+      var config = {
+        method: "get",
+        url: this.$store.state.host + "user/BuyPlan/" + (index+1),
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + this.$cookies.get("token"),
+        },
+        // data: data,
+      };
+      await axios(config).then();
     }
   }
 };
