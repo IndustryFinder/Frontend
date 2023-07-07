@@ -49,7 +49,6 @@ export default {
       await axios(config)
         .then(
           function (response) {
-            //console.log(response.data);
             that.adList = response.data;
           }
         )

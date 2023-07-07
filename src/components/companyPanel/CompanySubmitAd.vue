@@ -77,16 +77,15 @@
 
   <!-- responsive -->
   <v-app v-else>
-    <!-- <CompanySidebarNavigationVue /> -->
     <v-sheet class="pa-5" color="transparent" elevation="0">
-      <h2 class="mb-5">ثبت آگهی</h2>
+      <strong class="mb-5 mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-res"
+        class="card-res mx-16"
         width="85vw"
         height="90%"
-        elevation="4"
+        elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -219,7 +218,6 @@ export default {
       let that = this;
       await axios(config)
         .then(function () {
-          // console.log(response.data);
           that.Toaster("آگهی با موفقیت ثبت شد", "success");
         })
         .catch(function (error) {

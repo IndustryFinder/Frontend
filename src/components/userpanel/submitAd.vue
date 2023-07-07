@@ -2,7 +2,7 @@
   <!-- desktop -->
   <v-app v-if="this.$vuetify.breakpoint.mdAndUp">
     <v-sheet color="transparent" elevation="0" class="pa-8">
-      <strong class="mx-8">ثبت آگهی</strong>
+      <strong class="mx-16">ثبت آگهی</strong>
       <v-card
         class="card-desktop mx-8 mb-8"
         width="70vw"
@@ -77,14 +77,14 @@
   <!-- responsive -->
   <v-app v-else>
     <v-sheet class="pa-5" color="transparent" elevation="0">
-      <strong class="mb-5">ثبت آگهی</strong>
+      <strong class="mb-5 mx-16">ثبت آگهی</strong>
       <v-card
-        class="card-res"
+        class="card-res mx-16"
         width="85vw"
         height="90%"
-        elevation="4"
+        elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -222,7 +222,7 @@ export default {
         .catch(function (error) {
           if (error.response.status === 422) {
             for (let err in error.response.data.errors) {
-              that.errorToaster(error.response.data.errors[err][0],"error");
+              that.errorToaster(error.response.data.errors[err][0], "error");
             }
           }
         });

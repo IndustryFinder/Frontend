@@ -4,7 +4,7 @@
     <v-sheet color="transparent" elevation="0" class="pa-8">
       <strong class="mb-5 mx-8">تغییر رمز عبور</strong>
       <v-card
-        class="card-desktop"
+        class="card-desktop mx-8 mx-16 pa-8"
         style="margin-bottom: 4em"
         width="70vw"
         height="80%"
@@ -21,33 +21,45 @@
                 <v-text-field
                   label="رمز عبور فعلی"
                   v-model="password"
-                  type="password"
                   outlined
-                >
+                  :append-icon="show1 ? ImdiEye : ImdiEyeOff"
+                  :rules="[rules.required, rules.min]"
+                  :type="show1 ? 'text' : 'password'"
+                  @click:append="show1 = !show1"
+                  style="direction: ltr !important"
+                  >
                 </v-text-field>
 
                 <p>رمز عبور جدید</p>
                 <v-text-field
                   label="رمز عبور جدید"
                   v-model="newPassword"
-                  type="password"
                   outlined
+                  :append-icon="show2 ? ImdiEye : ImdiEyeOff"
+                  :rules="[rules.required, rules.min]"
+                  :type="show2 ? 'text' : 'password'"
+                  @click:append="show2 = !show2"
+                  style="direction: ltr !important"
                 >
                 </v-text-field>
                 <p>تکرار رمز عبور جدید</p>
                 <v-text-field
                   v-model="newPasswordConfirm"
-                  type="password"
                   clearable
                   outlined
                   label="تکرار رمز عبور جدید"
+                  :append-icon="show2 ? ImdiEye : ImdiEyeOff"
+                  :rules="[rules.required, rules.min]"
+                  :type="show2 ? 'text' : 'password'"
+                  @click:append="show2 = !show2"
+                  style="direction: ltr !important"
                 >
                 </v-text-field>
 
                 <!-- save button -->
                 <v-btn
                   class="btn-mobile"
-                  elevation="4"
+                  elevation="12"
                   large
                   outlined
                   raised
@@ -85,12 +97,12 @@
     <v-sheet class="pa-5" color="transparent" elevation="0">
       <strong class="mb-5">ویرایش رمز عبور</strong>
       <v-card
-        class="card-res"
+        class="card-res mx-16"
         width="85vw"
         height="90%"
-        elevation="4"
+        elevation="12"
         raised
-        rounded
+        shaped
         outlined
       >
         <v-card-text>
@@ -99,28 +111,39 @@
               <v-col cols="12" class="px-8 col">
                 <p>رمز عبور فعلی</p>
                 <v-text-field
-                  label="رمز عبور جدید"
+                  label="رمز عبور فعلی"
                   v-model="password"
-                  type="password"
                   outlined
+                  :append-icon="show4 ? ImdiEye : ImdiEyeOff"
+                  :rules="[rules.required, rules.min]"
+                  :type="show4 ? 'text' : 'password'"
+                  @click:append="show4 = !show4"
+                  style="direction: ltr !important"
                 >
                 </v-text-field>
-
                 <p>رمز عبور جدید</p>
                 <v-text-field
                   label="رمز عبور جدید"
                   v-model="newPassword"
-                  type="password"
                   outlined
+                  :append-icon="show5 ? ImdiEye : ImdiEyeOff"
+                  :rules="[rules.required, rules.min]"
+                  :type="show5 ? 'text' : 'password'"
+                  @click:append="show5 = !show5"
+                  style="direction: ltr !important"
                 >
                 </v-text-field>
                 <p>تکرار رمز عبور</p>
                 <v-text-field
                   v-model="newPasswordConfirm"
-                  type="password"
                   clearable
                   outlined
                   label="تکرار رمز عبور"
+                  :append-icon="show6 ? ImdiEye : ImdiEyeOff"
+                  :rules="[rules.required, rules.min]"
+                  :type="show6 ? 'text' : 'password'"
+                  @click:append="show6 = !show6"
+                  style="direction: ltr !important"
                 >
                 </v-text-field>
 
@@ -159,11 +182,28 @@
 </template>
 
 <script>
+import { mdiEye, mdiEyeOff } from "@mdi/js";
 export default {
   data: () => ({
     password: "",
     newPassword: "",
     newPasswordConfirm: "",
+    ImdiEye: mdiEye,
+    ImdiEyeOff: mdiEyeOff,
+    show1: false,
+    show2: false,
+    show3: false,
+    show4: false,
+    show5: false,
+    show6: false,
+    rules: {
+      required: (value) => !!value || "رمز عبور لازم است!",
+      min: (v) => v.length >= 8 || "حداقل ۸ کارکتر بنویسید.",
+    },
+    emailRules: [
+      (v) => !!v || "ایمیل را وارد کنید",
+      (v) => /.+@.+\..+/.test(v) || "ایمیل صحیح وارد نمایید.",
+    ],
   }),
   methods: {
     errorToaster(msg, type = "error") {
@@ -220,12 +260,9 @@ export default {
   margin-right: 2em;
 }
 .card-res {
-  margin: 1em;
   padding: 1em;
 }
-strong {
-  font-size: 1.5em;
-}
+
 .btn-mobile {
   margin-top: 1em;
 }

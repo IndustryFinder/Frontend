@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-sheet fill-height color="transparent" class="pa-10">
-      <v-row class="mb-5" align="center">
+      <v-row class="mb-5 mx-16" align="center">
         <strong>آگهی های من</strong>
       </v-row>
       <v-row justify="center" align="center" :dense="this.$vuetify.breakpoint.smAndDown">
@@ -47,7 +47,6 @@ export default {
       await axios(config)
         .then(
           function (response) {
-            // console.log(response.data);
             that.adList = response.data;
           }
         )

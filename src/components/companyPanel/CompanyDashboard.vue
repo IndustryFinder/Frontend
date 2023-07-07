@@ -3,16 +3,16 @@
     <v-sheet>
       <v-sheet color="transparent" class="pa-4">
         <div class="pa-4">
-          <v-row class="mb-5">
+          <v-row class="mb-5 mx-8">
             <strong>دید کلی</strong>
           </v-row>
 
-          <v-row>
+          <v-row class="mx-12">
             <v-spacer />
             <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
               <TopDisplayRowCardVue
                 name="item"
-                :item="{ Title: 'بازدید از آگهی های شما', Info: totalVisit }"
+                :item="{ Title: 'بازدید از صفحه شرکت شما', Info: totalVisit }"
               />
             </v-col>
             <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
@@ -24,7 +24,7 @@
             <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
               <TopDisplayRowCardVue
                 name="item"
-                :item="{ Title: 'آگهی های مرتبط', Info: '4' }"
+                :item="{ Title: 'آگهی‌های ثبت شده', Info: companyAds }"
               />
             </v-col>
             <v-col class="cols" cols="12" sm="6" md="3" lg="3" xl="2">
@@ -36,24 +36,23 @@
             <v-spacer />
           </v-row>
         </div>
-        <v-row>
-          <AdsContainerVue :adsList="adsList" />
-        </v-row>
       </v-sheet>
 
       <v-sheet v-if="this.$vuetify.breakpoint.mdAndUp" class="pa-8">
+        <v-row>
+          <AdsContainerVue :adsList="adsList" />
+        </v-row>
         <v-row>
           <v-col class="v-col" cols="6">
             <DashboardChecklistVue class="mx-8" />
           </v-col>
           <v-col class="v-col" cols="6">
-            <UnansweredTicketsVue class="mx-8" />
+            <v-img src="@/assets/activity.png" class="mx-16" height="250px" width="400px"></v-img>
           </v-col>
         </v-row>
       </v-sheet>
       <div v-else>
-        <DashboardChecklistVue class="mb-3" />
-        <UnansweredTicketsVue />
+        <DashboardChecklistVue class="mb-3 mx-16" />
       </div>
     </v-sheet>
   </v-app>
@@ -63,11 +62,9 @@
 import TopDisplayRowCardVue from "./TopDisplayRowCard.vue";
 import AdsContainerVue from "./AdsContainer.vue";
 import DashboardChecklistVue from "./DashboardChecklist.vue";
-import UnansweredTicketsVue from "./UnansweredTickets.vue";
 
 export default {
   components: {
-    UnansweredTicketsVue,
     AdsContainerVue,
     TopDisplayRowCardVue,
     DashboardChecklistVue,
@@ -80,7 +77,7 @@ export default {
       adsList: [],
       totalVisit:'',
       ads:'',
-      related:'',
+      companyAds:'',
       plan:''
     };
   },
@@ -97,8 +94,9 @@ export default {
       };
       let that = this;
       await axios(config).then(function (response) {
-        //console.log(response.data);
+        that.companyAds = response.data.length;
         that.adList = response.data;
+        console.log(that.adList);
       });
     },
     async userInfo() {
@@ -114,17 +112,10 @@ export default {
       let that = this;
       await axios(config)
         .then(function (response) {
-          that.$cookies.set("user", response.data);
-          this.totalVisit = response.company.ViewCount;
-          this.ads = response.AdsRemaining;
-          //fix this later
-          this.related = 0;
-          this.plan = response.activePlan;
+          that.totalVisit = response.data.company.ViewCount;
+          that.ads = response.data.AdsRemaining;
+          that.plan = response.data.activePlan;
         })
-        .catch(() => {
-          that.$cookies.remove("user");
-          that.$cookies.remove("token");
-        });
     },
   },
   beforeMount() {

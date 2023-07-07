@@ -191,7 +191,7 @@ export default {
       var data = new FormData();
       if (this.name) data.append("name", this.name);
       if (this.phone) data.append("phone", this.phone);
-      if (this.selectedFile) data.append("avatar", this.selectedFile);
+      if (this.selectedFile) data.append("logo", this.selectedFile);
       if (this.email) data.append("email", this.email);
 
       var config = {

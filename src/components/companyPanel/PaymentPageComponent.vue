@@ -45,12 +45,10 @@ export default {
   methods: {
     updateCredit(newCredit) {
       this.balance = newCredit;
-      console.log('Page has got it!');
       console.log(this.balance);
     }
   },
   beforeMount(){
-    console.log('hook');
     this.balance = this.$cookies.get('user').wallet
   }
 }

@@ -2,7 +2,7 @@
   <v-sheet color="transparent" class="pa-4">
     <div class="pa-4">
       <v-row class="mb-5">
-        <strong style="font-size: 1.5em">شارژ کیف پول</strong>
+        <strong>شارژ کیف پول</strong>
       </v-row>
 
       <v-row>
@@ -57,7 +57,7 @@
             height="95%"
             min-height="50px"
             style="margin: 0 auto"
-            @click="withdraw()"
+            @click="chargeWallet"
           >
             پرداخت
           </v-btn>
@@ -87,9 +87,26 @@ export default {
     addTotal(index) {
       this.amountToCharge += this.chargeCards[index].Num;
     },
-    withdraw() {
-      this.$emit("addCash", this.amountToCharge);
-      this.amountToCharge = 0;
+    async chargeWallet() {
+      var axios = require("axios");
+      var FormData = require("form-data");
+      var data = new FormData();
+      data.append("cash", this.amountToCharge);
+      var config = {
+        method: "post",
+        url: this.$store.state.host + "user/Addcash",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + this.$cookies.get("token"),
+        },
+        data: data,
+      };
+
+      let that = this;
+      await axios(config).then(function (response) {
+        console.log(response.data.Balance);
+        that.$emit("update-wallet", response.data.Balance);
+      });
     },
   },
 };

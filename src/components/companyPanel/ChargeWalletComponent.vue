@@ -2,7 +2,7 @@
   <v-sheet color="transparent" class="pa-4 mx-16">
     <div class="pa-4">
       <v-row class="mb-5">
-        <strong style="font-size: 1.5em">شارژ کیف پول</strong>
+        <strong>شارژ کیف پول</strong>
       </v-row>
 
       <v-row>

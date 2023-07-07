@@ -69,7 +69,9 @@
               </v-col>
               <v-col cols="6" class="px-8 col">
                 <v-row>
-                  <v-img src="@/assets/profile.png" class="img" height="250">
+                  <v-img src="@/assets/profile.png" 
+                  class="img" 
+                  height="250px">
                   </v-img>
                 </v-row>
 
@@ -92,7 +94,7 @@
 
   <!-- change the mobile breakpoint -->
   <v-app v-else>
-    <h2 class="title-res">ویرایش پروفایل شرکت</h2>
+    <strong class="title-res">ویرایش پروفایل شرکت</strong>
     <v-card
       class="card-res mx-16"
       width="90vw"
@@ -185,7 +187,7 @@ export default {
     email: "",
     phone: "",
     selectedFile: null,
-    description: ""
+    description: "",
   }),
 
   methods: {
@@ -201,7 +203,10 @@ export default {
 
       var config = {
         method: "post",
-        url: this.$store.state.host + "company/update/" + this.$cookies.get('user').company.id,
+        url:
+          this.$store.state.host +
+          "company/update/" +
+          this.$cookies.get("user").company.id,
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + this.$cookies.get("token"),
@@ -230,14 +235,11 @@ export default {
       });
     },
   },
-  components: { },
+  components: {},
 };
 </script>
 
 <style scoped>
-strong {
-  font-size: 1.5em;
-}
 .col * {
   margin: 0.5em;
 }

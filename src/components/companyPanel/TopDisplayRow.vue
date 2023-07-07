@@ -3,7 +3,7 @@
     <div class="pa-4">
       <v-row class="mb-5">
         <!-- <v-img src="@/assets/dashboard.png" class="img pa-2" height="200"></v-img> -->
-        <strong style="font-size: 1.5em">دید کلی</strong>
+        <strong>دید کلی</strong>
       </v-row>
       <v-row>
         <v-spacer />
