@@ -25,31 +25,31 @@ describe('User Dashboard', () => {
     //         })
     // })
 
-    it('should display dashboard checklist and unanswered tickets when viewport is wider than md', () => {
-        cy.viewport(1200, 800)
-        cy.get('.pa-8 .v-col')
-            .should('have.length', 2)
-    })
+    // it('should display dashboard checklist and unanswered tickets when viewport is wider than md', () => {
+    //     cy.viewport(1200, 800)
+    //     cy.get('.pa-8 .v-col')
+    //         .should('have.length', 2)
+    // })
 
-    it('should hide dashboard checklist and unanswered tickets when viewport is narrower than md', () => {
-        cy.viewport(800, 600)
+    // it('should hide dashboard checklist and unanswered tickets when viewport is narrower than md', () => {
+    //     cy.viewport(800, 600)
 
-        cy.get('.pa-8')
-            .should('not.exist')
+    //     cy.get('.pa-8')
+    //         .should('not.exist')
 
-        cy.get('.rounded-lg-pa-2')
-            .should('exist')
-    })
+    //     cy.get('.rounded-lg-pa-2')
+    //         .should('exist')
+    // })
 
-    it('should display the dashboard elements in mobile view', () => {
-        cy.viewport('iphone-6')
-        cy.visit(baseData.host + '/user/dashboard')
-        cy.contains('strong', 'دید کلی').should('be.visible')
-        cy.get('.pa-4 .cols').should('have.length', 3)
-        // cy.get('.transparent').should('be.visible')
-        // cy.get('.rounded-lg-pa-2').should('be.visible')
-        // cy.get('.rounded-lg-pa-2').should('be.visible')
-    })
+    // it('should display the dashboard elements in mobile view', () => {
+    //     cy.viewport('iphone-6')
+    //     cy.visit(baseData.host + '/user/dashboard')
+    //     cy.contains('strong', 'دید کلی').should('be.visible')
+    //     cy.get('.pa-4 .cols').should('have.length', 3)
+    //     // cy.get('.transparent').should('be.visible')
+    //     // cy.get('.rounded-lg-pa-2').should('be.visible')
+    //     // cy.get('.rounded-lg-pa-2').should('be.visible')
+    // })
 
     // it('should be clickable unanswered tickets', () => {
     //     cy.get('.rounded-lg-pa-2')

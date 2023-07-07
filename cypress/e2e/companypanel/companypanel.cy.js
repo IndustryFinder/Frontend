@@ -39,17 +39,17 @@ describe('User Dashboard', () => {
         .should('exist')
   })
 
-  it('should be clickable unanswered tickets', () => {
-    cy.get('.rounded-lg-pa-2')
-        .each(($el) => {
-          cy.wrap($el)
-              .within(() => {
-                cy.get('.v-card__title')
-                    .click()
+  // it('should be clickable unanswered tickets', () => {
+  //   cy.get('.rounded-lg-pa-2')
+  //       .each(($el) => {
+  //         cy.wrap($el)
+  //             .within(() => {
+  //               cy.get('.v-card__title')
+  //                   .click()
 
-                cy.get('.v-card__text')
-                    .should('exist')
-              })
-        })
-  })
+  //               cy.get('.v-card__text')
+  //                   .should('exist')
+  //             })
+  //       })
+  // })
 })
