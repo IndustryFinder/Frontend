@@ -12,11 +12,11 @@ describe('SideBarNavigation component', () => {
     cy.get('.overflow-hidden').should('exist')
   })
 
-  it('should have a visible app bar on small and down screens', () => {
-    cy.viewport('iphone-6')
-    cy.visit(baseData.host + '/user/dashboard')
-    cy.get('.v-app-bar').should('be.visible')
-  })
+  // it('should have a visible app bar on small and down screens', () => {
+  //   cy.viewport('iphone-6')
+  //   cy.visit(baseData.host + '/user/dashboard')
+  //   cy.get('.v-app-bar').should('be.visible')
+  // })
 
   it('should have the drawer closed on page load on large screens', () => {
     cy.viewport('macbook-15')

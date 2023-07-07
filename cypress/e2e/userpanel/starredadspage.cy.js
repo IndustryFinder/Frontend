@@ -19,7 +19,7 @@ describe('Starred Ads Page Component Tests', () => {
   });
 
   it('displays the title correctly', () => {
-    cy.contains('نشانک ها').should('be.visible');
+    cy.contains('نشانک‌های من').should('be.visible');
   });
 
   it('should display ad card details', () => {
