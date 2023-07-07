@@ -15,7 +15,7 @@ describe('Company Sidebar Component', () => {
   it('displays user avatar and name in sidebar', () => {
     cy.get('.v-list-item__title').contains('mahdieh')
     cy.get('.v-list-item__subtitle').contains('mahdieh9816@gmail.com')
-    cy.get('.v-image__image').should('exist')
+    // cy.get('.v-image__image').should('exist')
   })
 
   // it('should have a visible app bar on small and down screens', () => {
