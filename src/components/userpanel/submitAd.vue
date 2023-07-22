@@ -158,7 +158,6 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     categories: [],
@@ -239,7 +238,6 @@ export default {
 
 <style scoped>
 .card-desktop {
-  border: 5px dashed var(--sd_primary);
   margin-top: 4em;
   margin-bottom: 2em;
   margin-right: 2em;
@@ -247,7 +245,6 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 strong {
   font-size: 1.5em;
