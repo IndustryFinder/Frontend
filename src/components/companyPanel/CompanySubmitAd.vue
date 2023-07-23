@@ -170,7 +170,7 @@ export default {
   methods: {
     Toaster(msg, t) {
       this.$toast.open({
-        message: msg, 
+        message: msg,
         type: t,
       });
     },
@@ -216,7 +216,7 @@ export default {
       await axios(config)
         .then(function (response) {
           console.log(response.data);
-          that.Toaster("آگهی با موفقیت ثبت شد", "success"); 
+          that.Toaster("آگهی با موفقیت ثبت شد", "success");
         })
         .catch(function (error) {
           if (error.response.status === 422) {
@@ -246,10 +246,8 @@ export default {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 4em;
 }
 .img {

@@ -10,26 +10,26 @@
     </v-app-bar>
 
     <v-navigation-drawer
-		permanent
-		v-model="$data[$vuetify.breakpoint.smAndDown ? 'drawer' : 'value']"
-		expand-on-hover
-		:value="true"
-		dark
-		fixed
-		hide-overlay
-		rail
-		right
+      permanent
+      v-model="$data[$vuetify.breakpoint.smAndDown ? 'drawer' : 'value']"
+      expand-on-hover
+      :value="true"
+      dark
+      fixed
+      hide-overlay
+      rail
+      right
     >
       <v-list dense nav>
-        <v-list-item class="px-2">
+        <v-list-item class="img">
           <v-img
             :src="
               this.$cookies.get('user').avatar
-                ? 'https://192.168.1.8/storage/avatars/' +
-                  this.$cookies.get('user').avatar
+                ? this.$store.state.storage + this.$cookies.get('user').avatar
                 : 'images/avatar.png/'
             "
-            width="10rem"
+            width="7rem"
+            min-width="40px"
           ></v-img>
         </v-list-item>
 
@@ -99,12 +99,12 @@
             <v-list-item-title>کیف پول</v-list-item-title>
           </v-list-item>
 
-					<v-list-item class="py-2" link to="/user/myads">
-						<v-list-item-icon>
-							<v-icon>mdi-file-document-edit-outline</v-icon>
-						</v-list-item-icon>
-						<v-list-item-title>آگهی های من</v-list-item-title>
-					</v-list-item>
+          <v-list-item class="py-2" link to="/user/myads">
+            <v-list-item-icon>
+              <v-icon>mdi-file-document-edit-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>آگهی های من</v-list-item-title>
+          </v-list-item>
 
           <v-list-item class="py-2" link to="/">
             <v-list-item-icon>
@@ -112,8 +112,8 @@
             </v-list-item-icon>
             <v-list-item-title>صفحه اصلی</v-list-item-title>
           </v-list-item>
-				</v-list-item-group>
-			</v-list>
+        </v-list-item-group>
+      </v-list>
 
       <v-divider></v-divider>
 
@@ -131,45 +131,48 @@
 
 <script>
 export default {
-	data: () => ({
-		drawer: false,
-		group: null,
-	}),
-	props: () => ({
-		update: false,
-	}),
-	methods: {
-		logout() {
-			this.$cookies.remove('user')
-			this.$cookies.remove('token')
-			this.$router.push('/')
-		},
-		async updater() {
-			let axios = require('axios');
-			let config = {
-				method: 'get',
-				url: this.$store.state.host + 'authentication/this',
-				headers: {
-					'Accept': 'application/json',
-					'Authorization': 'Bearer ' + this.$cookies.get('token')
-				},
-			};
-			let that = this;
-			await axios(config)
-					.then(function (response) {
-						that.$cookies.set('user', response.data)
-					})
-					.catch(() => {
-						that.$cookies.remove('user');
-						that.$cookies.remove('token');
-					});
-		},
-	},
-	beforeMount() {
-		this.updater()
-	}
-}
+  data: () => ({
+    drawer: false,
+    group: null,
+  }),
+  props: () => ({
+    update: false,
+  }),
+  methods: {
+    logout() {
+      this.$cookies.remove("user");
+      this.$cookies.remove("token");
+      this.$router.push("/");
+    },
+    async updater() {
+      let axios = require("axios");
+      let config = {
+        method: "get",
+        url: this.$store.state.host + "authentication/this",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + this.$cookies.get("token"),
+        },
+      };
+      let that = this;
+      await axios(config)
+        .then(function (response) {
+          that.$cookies.set("user", response.data);
+        })
+        .catch(() => {
+          that.$cookies.remove("user");
+          that.$cookies.remove("token");
+        });
+    },
+  },
+  beforeMount() {
+    this.updater();
+  },
+};
 </script>
 
 <style scoped>
+.img {
+  padding: 0;
+}
 </style>

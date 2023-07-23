@@ -26,28 +26,30 @@
                 </v-row>
                 <v-row class="row">
                   <v-text-field
-                      name="companyname"
-                      label="نام شرکت"
-                      v-model="name"
-                      outlined>
+                    name="companyname"
+                    label="نام شرکت"
+                    v-model="name"
+                    outlined
+                  >
                   </v-text-field>
                 </v-row>
 
                 <v-row class="row">
                   <v-text-field
-                      name="email"
-                      label="ایمیل شرکت"
-                      v-model="email"
-                      outlined>
+                    name="email"
+                    label="ایمیل شرکت"
+                    v-model="email"
+                    outlined
+                  >
                   </v-text-field>
                 </v-row>
 
                 <v-row class="row">
                   <v-text-field
-                      name="phone-number"
-                      label="تلفن شرکت"
-                      v-model="phone"
-                      outlined
+                    name="phone-number"
+                    label="تلفن شرکت"
+                    v-model="phone"
+                    outlined
                   ></v-text-field>
                 </v-row>
 
@@ -124,7 +126,12 @@
                 v-model="selectedFile"
               ></v-file-input>
               <v-row class="row-res">
-                <v-text-field name="companyname" v-model="name" label="نام شرکت" outlined>
+                <v-text-field
+                  name="companyname"
+                  v-model="name"
+                  label="نام شرکت"
+                  outlined
+                >
                 </v-text-field>
               </v-row>
 
@@ -210,7 +217,10 @@ export default {
 
       var config = {
         method: "post",
-        url: this.$store.state.host + "company/update/" + this.$cookies.get('user').company.id,
+        url:
+          this.$store.state.host +
+          "company/update/" +
+          this.$cookies.get("user").company.id,
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + this.$cookies.get("token"),
@@ -239,7 +249,7 @@ export default {
       });
     },
   },
-  components: { },
+  components: {},
 };
 </script>
 
@@ -263,10 +273,8 @@ strong {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 3em;
 }
 .row-res {

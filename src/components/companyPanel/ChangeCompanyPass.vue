@@ -267,10 +267,8 @@ strong {
 .card-res {
   margin: 1em;
   padding: 1em;
-  border: 2px dashed var(--sd_primary);
 }
 .card-desktop {
-  border: 2px dashed var(--sd_primary);
   margin-top: 4em;
 }
 .img {
