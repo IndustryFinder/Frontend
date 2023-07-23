@@ -2,7 +2,7 @@
   <v-sheet color="transparent" class="pa-4 mx-16">
     <div class="pa-4">
       <v-row class="mb-5">
-        <strong style="font-size: 1.5em">شارژ کیف پول</strong>
+        <strong>شارژ کیف پول</strong>
       </v-row>
       <v-row>
         <v-spacer />
@@ -16,7 +16,7 @@
         >
           <v-btn
             outlined
-            class="rounded-lg pa-2"
+            class="rounded-lg pa-2 btn"
             justify="center"
             align="center"
             width="100%"
@@ -111,4 +111,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.btn {
+  background: rgb(161, 156, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(161, 156, 251, 1) 0%,
+    rgba(118, 118, 249, 1) 68%
+  );
+  color: white;
+}
+</style>

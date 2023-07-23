@@ -2,7 +2,7 @@
   <v-app>
     <v-sheet fill-height color="transparent" class="pa-10">
       <v-row class="mb-5" align="center">
-        <strong style="font-size: 1.5em">آگهی های من</strong>
+        <strong>آگهی های من</strong>
       </v-row>
 
       <v-row

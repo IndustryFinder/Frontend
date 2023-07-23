@@ -21,14 +21,15 @@
       right
     >
       <v-list dense nav>
-        <v-list-item class="px-2">
+        <v-list-item class="img">
           <v-img
             :src="
               this.$cookies.get('user').avatar
                 ? this.$store.state.storage + this.$cookies.get('user').avatar
                 : 'images/avatar.png/'
             "
-            width="10rem"
+            width="7rem"
+            min-width="40px"
           ></v-img>
         </v-list-item>
 
@@ -171,4 +172,7 @@ export default {
 </script>
 
 <style scoped>
+.img {
+  padding: 0;
+}
 </style>
